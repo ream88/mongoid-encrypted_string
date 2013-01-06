@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>mongoid-encrypted_string by haihappen</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>mongoid-encrypted_string</h1>
+        <p>Encrypted string type for Mongoid.</p>
+        <p class="view"><a href="https://github.com/haihappen/mongoid-encrypted_string">View the Project on GitHub <small>haihappen/mongoid-encrypted_string</small></a></p>
+        <ul>
+          <li><a href="https://github.com/haihappen/mongoid-encrypted_string/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/haihappen/mongoid-encrypted_string/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/haihappen/mongoid-encrypted_string">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>mongoid-encrypted_string</h1>
+
+<p><code>Mongoid::EncryptedString</code> defines an encrypted string type for your Mongoid apps, which provides you a simple way to store encrypted information in your database.</p>
+
+<p><code>Mongoid::EncryptedString</code> uses <code>Gibberish::AES</code> internally to encrypt your data.</p>
+
+<h2>Installation</h2>
+
+<p>In your Gemfile:</p>
+
+<div class="highlight"><pre><span class="n">gem</span> <span class="s1">'mongoid-encrypted_string'</span>
+</pre></div>
+
+<p>Add an initializer:</p>
+
+<div class="highlight"><pre><span class="no">Mongoid</span><span class="o">::</span><span class="no">EncryptedString</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="s1">'random'</span>
+</pre></div>
+
+<h2>Usage</h2>
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Document</span>
+  <span class="kp">include</span> <span class="no">Mongoid</span><span class="o">::</span><span class="no">Document</span>
+
+  <span class="n">field</span> <span class="ss">:string</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="no">Mongoid</span><span class="o">::</span><span class="no">EncryptedString</span>
+<span class="n">ends</span>
+</pre></div>
+
+<div class="highlight"><pre><span class="n">document</span> <span class="o">=</span> <span class="no">Document</span><span class="o">.</span><span class="n">create</span> <span class="n">string</span><span class="p">:</span> <span class="s1">'secret'</span>
+<span class="n">document</span><span class="o">.</span><span class="n">attributes</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="s2">"_id"</span><span class="o">=&gt;</span><span class="s2">"50e92506372fa248a6000002"</span><span class="p">,</span>
+ <span class="s2">"string"</span><span class="o">=&gt;</span>
+  <span class="s2">"U2FsdGVkX19oLIvsPM0WtUiqyFwp/TPOk5x5t/5S5q4qDkGqcoWy7FKtkxvj</span><span class="se">\n</span><span class="s2">icT5</span><span class="se">\n</span><span class="s2">"</span> <span class="p">}</span>
+</pre></div>
+
+<p>If you want to use <code>EncryptedString</code> directly instead of <code>Mongoid::EncryptedString</code>:</p>
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Document</span>
+  <span class="kp">include</span> <span class="no">Mongoid</span><span class="o">::</span><span class="no">Document</span>
+
+  <span class="n">field</span> <span class="ss">:string</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="no">EncryptedString</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>… your Gemfile must include a additional require statement:</p>
+
+<div class="highlight"><pre><span class="n">gem</span> <span class="s1">'mongoid-encrypted_string'</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="s1">'mongoid/encrypted_string/global'</span>
+</pre></div>
+
+<h2>Contributing</h2>
+
+<ol>
+<li>Fork it</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Added some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol><h2>Copyright</h2>
+
+<p>(The MIT license)</p>
+
+<p>Copyright (c) 2013 Mario Uher</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/haihappen">haihappen</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-30324853-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
