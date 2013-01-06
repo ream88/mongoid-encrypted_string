@@ -26,7 +26,7 @@ module Mongoid
       end
 
     private
-      def aes        
+      def aes
         @aes ||= Gibberish::AES.new(key || raise(StandardError, "Mongoid::EncryptedString.config.key is not set"))
       end
     end
