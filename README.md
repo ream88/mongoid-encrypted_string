@@ -1,6 +1,6 @@
 # mongoid-encrypted_string
 
-`Mongoid::EncryptedString` defines a EncryptedString type for your Mongoid apps, which provides you a simple way to store encrypted information in your database.
+`Mongoid::EncryptedString` defines an encrypted string type for your Mongoid apps, which provides you a simple way to store encrypted information in your database.
 
 `Mongoid::EncryptedString` uses `Gibberish::AES` internally to encrypt your data.
 
